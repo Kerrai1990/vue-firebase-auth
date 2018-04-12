@@ -1,17 +1,43 @@
 <template>
   <div class="hello">
       <h2>Dashboard</h2>
+
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Joint</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="review in reviews">
+              <td><a v-bind:href="reviews.url">{{reviews.name}}</a></td>
+              <td>{{reviews.score}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
-  name: 'Dashboard',
-  data () {
-    return {
-      msg: 'You have been logged in'
+
+    data () {
+        return {
+            firebasename: 'Dashboard',
+            reviews: {},
+        }
+    },
+    methods: {
+        getReviews: function() {
+            regions = db.ref('regions')
+            location = db.ref('locations')
+        }
     }
-  }
 }
 </script>
 

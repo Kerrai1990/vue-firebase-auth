@@ -10,9 +10,13 @@ Vue.config.productionTip = false
 // Initialize Firebase
 let app;
 var config = {
-    //Add Firebase services.json here
+
 };
+
 firebase.initializeApp(config);
+
+let db = firebase.database()
+
 firebase.auth().onAuthStateChanged(function (user) {
     if(!app) {
         /* eslint-disable no-new */
