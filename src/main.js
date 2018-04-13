@@ -10,7 +10,12 @@ Vue.config.productionTip = false
 // Initialize Firebase
 let app;
 var config = {
-
+  apiKey: "AIzaSyDMwAEetouMAJOOb9jy1KLQCfK9L5oz418",
+  authDomain: "vue-firebase-auth-1c61e.firebaseapp.com",
+  databaseURL: "https://vue-firebase-auth-1c61e.firebaseio.com",
+  projectId: "vue-firebase-auth-1c61e",
+  storageBucket: "vue-firebase-auth-1c61e.appspot.com",
+  messagingSenderId: "1243533124"
 };
 
 firebase.initializeApp(config);
@@ -28,3 +33,4 @@ firebase.auth().onAuthStateChanged(function (user) {
         })
     }
 });
+

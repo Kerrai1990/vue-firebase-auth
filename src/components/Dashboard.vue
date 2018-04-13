@@ -11,9 +11,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="review in reviews">
-              <td><a v-bind:href="reviews.url">{{reviews.name}}</a></td>
-              <td>{{reviews.score}}</td>
+            <tr v-for="location in locations">
+              <td>{{location}}</td>
+
+              <td><a v-bind:href="location.url">{{location.name}}</a></td>
+              <td>{{location.score}}</td>
             </tr>
           </tbody>
         </table>
@@ -29,14 +31,24 @@ export default {
     data () {
         return {
             firebasename: 'Dashboard',
-            reviews: {},
+            locations: {},
         }
     },
     methods: {
         getReviews: function() {
-            regions = db.ref('regions')
-            location = db.ref('locations')
-        }
+          regions = this.$db.ref('regions');
+          locations = this.$db.ref('locations');    
+          this.locations = locations;
+        },
+    },
+    mounted() {
+      const database = firebase.database().ref( 'locations/0/reviews');
+      database.on( 'value', snapshot => {
+        const rev = firebase.database().ref('reviews/99');
+        rev.on('value', snapshot => {
+          this.locations = snapshot.val();
+        });
+      });  
     }
 }
 </script>
